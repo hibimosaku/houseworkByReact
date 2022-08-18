@@ -1,32 +1,16 @@
-// import React, { useEffect, useState } from 'react'
-// import { useRecoilState, useRecoilValue } from 'recoil'
-// import { getAllRecordsData } from '../../api/record.api-service'
-// import { recordState } from '../../store/recordState'
-// import { Record } from '../../type/record-type'
-import RecordCreate from '../organisms/RecordCreate'
-import {Records} from '../organisms/Records'
-
+import React from "react";
+import RecordCreate from "../organisms/RecordCreate";
+import { Records } from "../organisms/Records";
 
 export default function Top() {
-  // const [recordList,setRecordList] = useState<Array<Record>>([])
-  // const [recodsInfo,setRecordsInfo] = useRecoilState(recordState)
-
-  //作成時作業一覧が更新されるが、仕組みが？
-  //create側が更新されたから、リロードされている
-  // useEffect(()=>{
-  //   getAllRecordsData().then((res)=>{
-  //     setRecordList(res)
-  //     setRecordsInfo(res)
-  //   })
-  // },[]);
   return (
-    <div>
+    <>
+      <h1 className="font-bold text-md my-5 underline decoration-wavy">作業</h1>
       <RecordCreate />
-      
-      <br />
-      <hr />
+      <div className="mb-3"></div>
+
       {/* <Records recordList={recordList} /> */}
       <Records />
-    </div>
-  )
+    </>
+  );
 }

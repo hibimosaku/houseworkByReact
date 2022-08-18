@@ -39,7 +39,7 @@ httpsで作る
 
 
 
-# 先生に質問
+# 先生に質問7/31
 ・レンタリングがコントロールできない、多い Records.tsx
 　これが良いのか悪いのかも不明。多分悪い
 
@@ -72,3 +72,11 @@ react
 ・型定義
  - component自体の定義で、FC
    propsの型、Records.tsxのとこ
+
+# 先生質問8/21
+・SWR使う？stockで試したがrecoilつかっているし。
+restapiのgetを取得する際に便利。そのページで使うとき。
+他のページにも値を渡したい場合はrecoil利用として、swrは適さない？
+・commponetとセットでデータ保持
+・suspenseの使いどころ
+・

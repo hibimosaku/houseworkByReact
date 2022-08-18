@@ -1,59 +1,42 @@
 import RecordCreate from "../components/organisms/RecordCreate";
-import RecordDetail from "../components/organisms/RecordDetail";
 import { Analysis } from "../components/pages/analysis/Analysis";
-import WorkDetail from "../components/pages/record/WorkDetail";
 import { Reminders } from "../components/pages/reminder/Reminders";
 import StockDetail from "../components/pages/stock/StockDetail";
 import Stocks from "../components/pages/stock/Stocks";
 import Top from "../components/pages/Top";
-import Test from '../test'
+import Test from "../test";
 
-
-type HomeRoutes ={
-  path:string,
-  children:any
-}
-
-
-export const homeRoutes:Array<HomeRoutes> = [
+type HomeRoutes = {
+  path: string;
+  children: any;
+};
+export const homeRoutes: Array<HomeRoutes> = [
   {
-    path:"/",
-    children:<Top />
+    path: "/",
+    children: <Top />,
   },
   {
-    path:"/test",
-    children:<Test />
+    path: "/test",
+    children: <Test />,
   },
   {
-    path:"/record/:id",
-    children:<RecordDetail />
+    path: "/recordCreate/",
+    children: <RecordCreate />,
   },
   {
-    path:"/work/:id",
-    children:<WorkDetail />
+    path: "/stocks/",
+    children: <Stocks />,
   },
   {
-    path:"/recordCreate/",
-    children:<RecordCreate />
+    path: "/stock/:id",
+    children: <StockDetail />,
   },
   {
-    path:"/stocks/",
-    children:<Stocks />
+    path: "/analysis",
+    children: <Analysis />,
   },
   {
-    path:"/stock/:id",
-    children:<StockDetail />
+    path: "/reminders",
+    children: <Reminders />,
   },
-  {
-    path:"/analysis",
-    children:<Analysis />
-  },
-  {
-    path:"/reminders",
-    children:<Reminders />
-  },
-  
-
-
-
-]
+];

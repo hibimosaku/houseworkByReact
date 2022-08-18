@@ -1,12 +1,13 @@
+import { Reminder } from "../model/reminder-model";
 import { URL } from "./url";
 
-export async function getAllReminder(){
-  const result = await fetch(`${URL}/reminder`,{
-    method:'GET',
-    headers:{
-      'Content-Type': 'application/json'
+export async function getAllReminder(): Promise<Array<Reminder>> {
+  const result = await fetch(`${URL}/reminder`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
     },
-  })
-  const reminders = await result.json()
-  return reminders
+  });
+  const reminders = await result.json();
+  return reminders;
 }

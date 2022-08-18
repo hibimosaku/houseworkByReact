@@ -1,48 +1,68 @@
-import { Stock } from "../model/stock-model"
+import { URL } from "./url";
+import { Stock, StockModel } from "../model/stock-model";
 
-export async function getAllStocksData(){
-  const result = 
-    await fetch("http://127.0.0.1:8000/api/stock",{
-      method:'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-  const records = await result.json()
-  return records
+// const sleep = (waitSeconds: any) => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve("成功");
+//     }, waitSeconds * 1000);
+//   });
+// };
+
+async function getAllStocksData(): Promise<Array<Stock>> {
+  // await sleep(5)
+  const result = await fetch(`${URL}/stock`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const records = await result.json();
+  return records;
 }
 
-
-export async function addStock(targetStock:Stock,num:number){
-  const updateStock = {
-    name:targetStock.name,
-    num:Number(targetStock.num) + Number(num),
+async function addStock(targetStock: Stock, num: number): Promise<void> {
+  const addStock = {
+    name: targetStock.name,
+    num: Number(targetStock.num) + Number(num),
     add_work: targetStock.add_work,
-    decrease_work:targetStock.decrease_work,
-  }
-  fetch(`http://127.0.0.1:8000/api/stock/${targetStock.id}/`,{
-    method:"PUT",
+    decrease_work: targetStock.decrease_work,
+  };
+  fetch(`${URL}/stock/${targetStock.id}/`, {
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body:JSON.stringify(updateStock)
+    body: JSON.stringify(addStock),
+  });
+}
+
+async function decreaseStock(
+  targetStock: Stock,
+  num: number = StockModel.DEFAULT_DECREASE_NUM
+): Promise<void> {
+  const addStock = {
+    name: targetStock.name,
+    num: Number(targetStock.num) - num,
+    add_work: targetStock.add_work,
+    decrease_work: targetStock.decrease_work,
+  };
+
+  fetch(`${URL}/stock/${targetStock.id}/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(addStock),
   })
+    .then((res) => {})
+    .catch((err) => {
+      console.log("失敗", err);
+    });
 }
 
-export async function decreaseStock(targetStock:Stock,num:number=1){
-  const updateStock = {
-    name:targetStock.name,
-    num:Number(targetStock.num) - num,
-    add_work: targetStock.add_work,
-    decrease_work:targetStock.decrease_work,
-  }
-
-  fetch(`http://127.0.0.1:8000/api/stock/${targetStock.id}/`,{
-    method:"PUT",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body:JSON.stringify(updateStock)
-  }).then((res)=>{})
-  .catch((err)=>{console.log('失敗',err)})
-}
+export const ApiStock = {
+  getAllStocksData,
+  addStock,
+  decreaseStock,
+};

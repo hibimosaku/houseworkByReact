@@ -1,49 +1,31 @@
-export async function getAllWorksData(){
-  const result = 
-    await fetch("http://127.0.0.1:8000/api/list-work",{
-      method:'GET',
+import { Work } from "../model/work-model";
+import { URL } from "./url";
+
+async function getAllWorksData(): Promise<Array<Work>> {
+  const result =
+    // await fetch("http://127.0.0.1:8000/api/list-work",{
+    await fetch(`${URL}/list-work`, {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-    })
-  const records = await result.json()
-  return records
+    });
+  const works = await result.json();
+  return works;
 }
-// export function creatRecord(){
-//   const data = {
 
-//   }
-//   fetch("http://127.0.0.1:8000/api/record",{
-//     method:"POST",
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body:
-//   })
-//   return
-// }
+async function getWorkDetail(id: number): Promise<Work> {
+  const result = await fetch(`${URL}/detail-work/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const works = await result.json();
+  return works;
+}
 
-// export async function getRecordDetail(id:string){
-//   const result = 
-//     await fetch(`http://127.0.0.1:8000/api/record/${id}`,{
-//       method:'GET',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//     })
-//   const records = await result.json()
-//   return records
-// }
-
-// export async function getWorkDetail(id:string){
-//   const result = 
-//     await fetch(`http://127.0.0.1:8000/api/detail-work/${id}`,{
-//       method:'GET',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//     })
-//   const records = await result.json()
-//   return records
-
-// }
+export const ApiWork = {
+  getAllWorksData,
+  getWorkDetail,
+};

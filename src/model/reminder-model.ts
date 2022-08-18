@@ -1,5 +1,7 @@
+//restapiからのデータ
+
 export type Reminder = {
-  id:number,
-  day:number,
-  work:number
-}
+  readonly id: number;
+  readonly day: number;
+  readonly work: number;
+};
