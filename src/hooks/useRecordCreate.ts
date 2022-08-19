@@ -6,30 +6,46 @@ import { Stock, StockModel } from "../model/stock-model";
 import { Work } from "../model/work-model";
 import { RecordState } from "../store/recordState";
 import { StockState } from "../store/stockState";
+import { WorkState } from "../store/workState";
+import { WorkTypeState } from "../store/workTypeState";
 
 export const useRecordCreate = () => {
   const { stocks } = StockState.useStocks();
+  const { works } = WorkState.useWorks();
+  const { worktypes } = WorkTypeState.useWorkTypes();
   const { addStock } = StockState.useAddStock();
   const { createRecord, updateRecord } = RecordState.useChangeRecord();
 
   const [stockNum, setStockNum] = useState<number>(1);
-  const [stock, setStock] = useState<Stock | {}>({});
-  const [works, setWorks] = useState<Array<Work>>([]);
+  const [stock, setStock] = useState<Stock | {}>(works);
+  // const [works, setWorks] = useState<Array<Work>>([]);
   const [workid, setWorkId] = useState<number | null>(0);
+  const [workTypeid, setWorkTypeId] = useState<number | null>(0);
   //【課題】1つにまとめれそう
   const [isAddwork, setIsAddwork] = useState(false);
   const [isDecreasework, setIsDecreasework] = useState(false);
+  const [filWorks, setFilWorks] = useState<Array<Work>>(works);
 
   useEffect(() => {
-    ApiWork.getAllWorksData()
-      .then((res) => {
-        setWorks(res);
-        return;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setFilWorks(works); //【課題】邪道？
   }, []);
+  const onChangeWorkType = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setWorkId(0);
+    if (!event) return;
+
+    const eventId = Number(event.target.value);
+    if (eventId === 0) {
+      setWorkTypeId(eventId);
+      setFilWorks(works);
+      return;
+    }
+
+    const result = works.filter((v) => {
+      return v.type === eventId;
+    });
+    setWorkTypeId(eventId);
+    setFilWorks(result);
+  };
 
   const onChangeWork = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const eventId = Number(event.target.value);
@@ -111,6 +127,7 @@ export const useRecordCreate = () => {
     stockNum,
     stock,
     works,
+    worktypes,
     workid,
     isAddwork,
     isDecreasework,
@@ -119,5 +136,9 @@ export const useRecordCreate = () => {
     onClickCreateRecord,
     onClickCreateRecordDecreaseStock,
     onClickCreateRecordAddStock,
+    workTypeid,
+    setWorkTypeId,
+    onChangeWorkType,
+    filWorks,
   };
 };

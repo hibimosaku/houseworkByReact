@@ -2,9 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./router/Router";
-import Header from "./components/pages/Header";
-import { RecoilRoot, useRecoilState } from "recoil";
-import { modalState } from "./store/modalState";
+import { RecoilRoot } from "recoil";
 
 function App() {
   // const [isModal, setIsModal] = useRecoilState(modalState);

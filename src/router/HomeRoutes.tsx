@@ -4,7 +4,6 @@ import { Reminders } from "../components/pages/reminder/Reminders";
 import StockDetail from "../components/pages/stock/StockDetail";
 import Stocks from "../components/pages/stock/Stocks";
 import Top from "../components/pages/Top";
-import Test from "../test";
 
 type HomeRoutes = {
   path: string;
@@ -14,10 +13,6 @@ export const homeRoutes: Array<HomeRoutes> = [
   {
     path: "/",
     children: <Top />,
-  },
-  {
-    path: "/test",
-    children: <Test />,
   },
   {
     path: "/recordCreate/",

@@ -2,13 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { RecordState } from "../../store/recordState";
 import { StockState } from "../../store/stockState";
+import { WorkState } from "../../store/workState";
+import { WorkTypeState } from "../../store/workTypeState";
 // const ProfilePage = React.lazy(() => import('./ProfilePage'));
 
 export default function Header() {
   const { initStock } = StockState.useInitStocks();
   const { initRecord } = RecordState.useInitRecords();
+  const { initWork } = WorkState.useInitWorks();
+  const { initWorkType } = WorkTypeState.useInitWorkTypes();
   initStock();
   initRecord();
+  initWork();
+  initWorkType();
   return (
     <div className="sticky top-0 z-50">
       <header className="block bg-green-700 py-3 mb-2">

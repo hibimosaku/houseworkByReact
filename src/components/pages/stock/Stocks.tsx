@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useSWR, { Fetcher } from "swr";
@@ -29,6 +29,7 @@ const Stocks = () => {
   const fetcher: Fetcher<Array<Stock>> = (url: string): Promise<Array<Stock>> =>
     fetch(url).then((res) => res.json());
   const { data: stocks, error, mutate } = useSWR(`${URL}/stock`, fetcher, {});
+
   return (
     <>
       <h1 className="font-bold text-md my-5 underline decoration-wavy">

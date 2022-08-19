@@ -13,6 +13,7 @@ export const ReminderTable: FC<Props> = (props) => {
       <table className="bg-white text-gray-900 border-separate w-full shadow-none text-sm sm:text-base">
         <thead>
           <tr>
+            <th className="bg-green-700 text-white p-2">分類</th>
             <th className="bg-green-700 text-white p-2">作業名</th>
             <th className="bg-green-700 text-white p-2">リマインダー日</th>
           </tr>
@@ -20,6 +21,15 @@ export const ReminderTable: FC<Props> = (props) => {
         {reminders.map((reminder, index) => (
           <tbody key={reminder.workId}>
             <tr>
+              <td
+                className={
+                  index % 2 === 0
+                    ? "bg-green-100 text-green-900 p-1"
+                    : "bg-green-200 text-green-900 p-1"
+                }
+              >
+                {reminder.typeName}
+              </td>
               <td
                 className={
                   index % 2 === 0

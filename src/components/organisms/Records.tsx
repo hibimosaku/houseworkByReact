@@ -13,7 +13,6 @@ export const Records = () => {
     onChangeFiltype,
     onChangeWorktype,
   } = useRecord();
-
   return (
     <>
       <h3 className="text-md my-1 underline decoration-dash">作業一覧</h3>
