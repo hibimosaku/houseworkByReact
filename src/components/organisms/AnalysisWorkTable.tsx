@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
-import { AnalysisWork } from "../../model/analysis/analysisWork-model";
-import { AnalysisWorkYearMonth } from "../../model/analysis/analysisWorkYearMonth-model";
+import { AnalysisWork } from "../../analysis/analysisWork-model";
+import { AnalysisWorkYearMonth } from "../../analysis/analysisWorkYearMonth-model";
 
 type Props = {
   analysisWorkYearMonth: AnalysisWorkYearMonth;

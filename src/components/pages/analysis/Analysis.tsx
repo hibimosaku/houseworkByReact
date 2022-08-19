@@ -1,13 +1,8 @@
 import { useRecoilState } from "recoil";
-import { recordState } from "../../../store/recordState";
-import { Record } from "../../../model/record-model";
+import { recordState } from "../../../record/recordState";
+import { Record } from "../../../record/record-model";
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  AnalysisWork,
-  createAnalysisWork,
-  createSumMonthWorkCount,
-} from "../../../model/analysis/analysisWork-model";
-import { getAllReminder } from "../../../api/reminder.api-service";
+import { getAllReminder } from "../../../reminder/reminder.api-service";
 import { useModal } from "../../../hooks/useModal";
 import WorkDetail from "../../organisms/ModalWorkDetail";
 import { ModalScreen } from "../../organisms/ModalScreen";
@@ -18,8 +13,13 @@ import {
   createAnalysisWorkYearMonth,
   calcCountYear,
   YEAR,
-} from "../../../model/analysis/analysisWorkYearMonth-model";
+} from "../../../analysis/analysisWorkYearMonth-model";
 import { AnalysisWorkTable } from "../../organisms/AnalysisWorkTable";
+import {
+  AnalysisWork,
+  createAnalysisWork,
+  createSumMonthWorkCount,
+} from "../../../analysis/analysisWork-model";
 
 export const Analysis = () => {
   const [animate, setAnimate] = useState(false);

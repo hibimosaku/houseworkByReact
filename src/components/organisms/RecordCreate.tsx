@@ -1,5 +1,5 @@
 import { useRecordCreate } from "../../hooks/useRecordCreate";
-import { WorkType } from "../../model/workType-model";
+import { WorkType } from "../../worktype/workType-model";
 import Button from "../atoms/Button";
 
 export default function RecordCreate() {

@@ -1,6 +1,6 @@
-import { Record } from "../model/record-model";
-import { Work } from "../model/work-model";
-import { URL } from "./url";
+import { Record } from "./record-model";
+import { Work } from "../work/work-model";
+import { URL } from "../api/url";
 
 async function getAllRecordsData(): Promise<Array<Record>> {
   const result = await fetch(`${URL}/record`, {

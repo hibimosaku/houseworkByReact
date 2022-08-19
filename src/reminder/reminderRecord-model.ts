@@ -1,4 +1,4 @@
-import { Record } from "./record-model";
+import { Record } from "../record/record-model";
 import { Reminder } from "./reminder-model";
 
 export type ReminderRecord = {

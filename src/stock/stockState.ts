@@ -6,9 +6,9 @@ import {
   useRecoilValue,
   useSetRecoilState,
 } from "recoil";
-import { ApiStock } from "../api/stock.api-service";
-import { Stock } from "../model/stock-model";
-import { RecoilAtomKeys } from "./RecoilKeys";
+import { ApiStock } from "./stock.api-service";
+import { Stock } from "./stock-model";
+import { RecoilAtomKeys } from "../store/RecoilKeys";
 
 const stockState = atom<Array<Stock>>({
   key: RecoilAtomKeys.STOCK_STATE,

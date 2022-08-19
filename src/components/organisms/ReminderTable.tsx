@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ReminderRecord } from "../../model/reminderRecord-model";
+import { ReminderRecord } from "../../reminder/reminderRecord-model";
 
 type Props = {
   reminders: Array<ReminderRecord>;

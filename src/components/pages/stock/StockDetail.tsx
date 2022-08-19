@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { RecordState } from "../../../store/recordState";
-import { Record } from "../../../model/record-model";
-import { Stock } from "../../../model/stock-model";
+import { RecordState } from "../../../record/recordState";
+import { Record } from "../../../record/record-model";
+import { Stock } from "../../../stock/stock-model";
 import useSWR, { Fetcher } from "swr";
 import { URL } from "../../../api/url";
 import { StockDetailTable } from "../../organisms/StockDetailTable";
@@ -12,7 +12,7 @@ const StockDetail = () => {
   //recoilから、stocksをとって、filterでstockの取得もできるが、、、
   const fetcher: Fetcher<Stock> = (url: string): Promise<Stock> =>
     fetch(url).then((res) => res.json());
-  const { data: stock, error, mutate } = useSWR(`${URL}/stock/${id}/`, fetcher);
+  const { data: stock } = useSWR(`${URL}/stock/${id}/`, fetcher);
 
   const [adds, setAdd] = useState<Array<Record>>();
   const [decreases, setDecrease] = useState<Array<Record>>();

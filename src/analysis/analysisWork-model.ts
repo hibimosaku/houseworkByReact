@@ -1,5 +1,5 @@
-import { Record } from "../record-model";
-import { Reminder } from "../reminder-model";
+import { Record } from "../record/record-model";
+import { Reminder } from "../reminder/reminder-model";
 
 export const MONTHNUM = 6;
 //【課題】こまごまとした関数はどこに置くのがわかりやすい？

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { ApiRecord } from "../api/record.api-service";
-import { ApiStock } from "../api/stock.api-service";
-import { ApiWork } from "../api/work.api-service";
-import { Stock, StockModel } from "../model/stock-model";
-import { Work } from "../model/work-model";
-import { RecordState } from "../store/recordState";
-import { StockState } from "../store/stockState";
-import { WorkState } from "../store/workState";
-import { WorkTypeState } from "../store/workTypeState";
+import { ApiRecord } from "../record/record.api-service";
+import { ApiStock } from "../stock/stock.api-service";
+import { Stock, StockModel } from "../stock/stock-model";
+import { Work } from "../work/work-model";
+import { RecordState } from "../record/recordState";
+import { StockState } from "../stock/stockState";
+import { WorkState } from "../work/workState";
+import { WorkTypeState } from "../worktype/workTypeState";
 
 export const useRecordCreate = () => {
   const { stocks } = StockState.useStocks();
@@ -28,6 +27,7 @@ export const useRecordCreate = () => {
 
   useEffect(() => {
     setFilWorks(works); //【課題】邪道？
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const onChangeWorkType = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setWorkId(0);

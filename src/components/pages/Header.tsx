@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { RecordState } from "../../store/recordState";
-import { StockState } from "../../store/stockState";
-import { WorkState } from "../../store/workState";
-import { WorkTypeState } from "../../store/workTypeState";
+import { RecordState } from "../../record/recordState";
+import { StockState } from "../../stock/stockState";
+import { WorkState } from "../../work/workState";
+import { WorkTypeState } from "../../worktype/workTypeState";
 // const ProfilePage = React.lazy(() => import('./ProfilePage'));
 
 export default function Header() {

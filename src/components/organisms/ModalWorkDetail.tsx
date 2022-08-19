@@ -1,13 +1,13 @@
 import React, { FC, Suspense, useEffect, useState } from "react";
 
-import { ApiWork } from "../../api/work.api-service";
+import { ApiWork } from "../../work/work.api-service";
 import {
   findWorkStock,
   NameAddOrDecOrNull,
   Work,
   WorkStock,
-} from "../../model/work-model";
-import { StockState } from "../../store/stockState";
+} from "../../work/work-model";
+import { StockState } from "../../stock/stockState";
 
 type Props = {
   id: number | undefined;

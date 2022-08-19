@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { getAllReminder } from "../api/reminder.api-service";
+import { getAllReminder } from "../reminder/reminder.api-service";
 import {
   ReminderRecord,
   ReminderRecordModel,
-} from "../model/reminderRecord-model";
-import { RecordState } from "../store/recordState";
+} from "../reminder/reminderRecord-model";
+import { RecordState } from "../record/recordState";
 
 export const useReminder = () => {
   const [delayReminders, setDelayReminders] = useState<Array<ReminderRecord>>(

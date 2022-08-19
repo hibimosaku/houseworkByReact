@@ -6,11 +6,11 @@ import {
   useRecoilValue,
   useSetRecoilState,
 } from "recoil";
-import { ApiWork } from "../api/work.api-service";
-import { ApiWorkType } from "../api/workType.api-service";
-import { Work } from "../model/work-model";
-import { WorkType } from "../model/workType-model";
-import { RecoilAtomKeys } from "./RecoilKeys";
+import { ApiWork } from "../work/work.api-service";
+import { ApiWorkType } from "./workType.api-service";
+import { Work } from "../work/work-model";
+import { WorkType } from "./workType-model";
+import { RecoilAtomKeys } from "../store/RecoilKeys";
 
 const workTypeState = atom<Array<WorkType>>({
   key: RecoilAtomKeys.WORKTYPE_STATE,

@@ -1,5 +1,5 @@
-import { URL } from "./url";
-import { Stock, StockModel } from "../model/stock-model";
+import { URL } from "../api/url";
+import { Stock, StockModel } from "./stock-model";
 
 // const sleep = (waitSeconds: any) => {
 //   return new Promise((resolve) => {

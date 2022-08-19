@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { Record } from "../../model/record-model";
+import { Record } from "../../record/record-model";
 
 type Props = {
   records: Array<Record>;

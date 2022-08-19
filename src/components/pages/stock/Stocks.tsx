@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useSWR, { Fetcher } from "swr";
 import { URL } from "../../../api/url";
-import { Stock } from "../../../model/stock-model";
-import { asyncStockState, testState } from "../../../store/stockState";
+import { Stock } from "../../../stock/stock-model";
+import { asyncStockState } from "../../../stock/stockState";
 
 function TestChild() {
   const [test] = useRecoilState<Array<Stock>>(asyncStockState);
@@ -28,7 +28,7 @@ function TestChild() {
 const Stocks = () => {
   const fetcher: Fetcher<Array<Stock>> = (url: string): Promise<Array<Stock>> =>
     fetch(url).then((res) => res.json());
-  const { data: stocks, error, mutate } = useSWR(`${URL}/stock`, fetcher, {});
+  const { data: stocks } = useSWR(`${URL}/stock`, fetcher, {});
 
   return (
     <>

@@ -5,9 +5,9 @@ import {
   useRecoilValue,
   useSetRecoilState,
 } from "recoil";
-import { ApiRecord } from "../api/record.api-service";
-import { Record } from "../model/record-model";
-import { RecoilAtomKeys } from "./RecoilKeys";
+import { ApiRecord } from "./record.api-service";
+import { Record } from "./record-model";
+import { RecoilAtomKeys } from "../store/RecoilKeys";
 export const recordState = atom<Array<Record>>({
   key: RecoilAtomKeys.RECORD_STATE,
   default: [],

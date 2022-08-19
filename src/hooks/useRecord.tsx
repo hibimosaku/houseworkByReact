@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { ApiRecord } from "../api/record.api-service";
-import { ApiStock } from "../api/stock.api-service";
-import { Record } from "../model/record-model";
-import { StockModel } from "../model/stock-model";
-import { recordState, RecordState } from "../store/recordState";
-import { StockState } from "../store/stockState";
+import { ApiRecord } from "../record/record.api-service";
+import { ApiStock } from "../stock/stock.api-service";
+import { Record } from "../record/record-model";
+import { StockModel } from "../stock/stock-model";
+import { recordState, RecordState } from "../record/recordState";
+import { StockState } from "../stock/stockState";
 
 export const useRecord = () => {
   const { updateRecord, deleteRecord } = RecordState.useChangeRecord();

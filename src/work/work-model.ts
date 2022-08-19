@@ -1,4 +1,4 @@
-import { Stock } from "./stock-model";
+import { Stock } from "../stock/stock-model";
 
 export type Work = {
   readonly id: number | null;
