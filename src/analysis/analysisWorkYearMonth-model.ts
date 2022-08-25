@@ -1,4 +1,4 @@
-import { MONTHNUM } from "./analysisWork-model";
+import { MONTHNUM } from "./analysiyMonthlyWork-model";
 
 export const YEAR: number = new Date().getFullYear();
 //分析結果の月の数

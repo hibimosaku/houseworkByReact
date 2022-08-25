@@ -8,7 +8,6 @@ import { asyncStockState } from "../../../stock/stockState";
 
 function TestChild() {
   const [test] = useRecoilState<Array<Stock>>(asyncStockState);
-
   return (
     <div>
       <h4>Test Child</h4>
@@ -32,6 +31,7 @@ const Stocks = () => {
 
   return (
     <>
+      {/* )} */}
       <h1 className="font-bold text-md my-5 underline decoration-wavy">
         在庫一覧
       </h1>

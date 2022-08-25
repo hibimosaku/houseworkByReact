@@ -1,7 +1,7 @@
-import { Work } from "../work/work-model";
 import { URL } from "../api/url";
+import { WorkType } from "./workType-model";
 
-async function getAllWorkTypesData(): Promise<Array<Work>> {
+async function getAllWorkTypesData(): Promise<Array<WorkType>> {
   const result = await fetch(`${URL}/list-worktype`, {
     method: "GET",
     headers: {

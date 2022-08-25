@@ -16,8 +16,7 @@ export const useRecordCreate = () => {
   const { createRecord, updateRecord } = RecordState.useChangeRecord();
 
   const [stockNum, setStockNum] = useState<number>(1);
-  const [stock, setStock] = useState<Stock | {}>(works);
-  // const [works, setWorks] = useState<Array<Work>>([]);
+  const [stock, setStock] = useState<Stock | {}>({});
   const [workid, setWorkId] = useState<number | null>(0);
   const [workTypeid, setWorkTypeId] = useState<number | null>(0);
   //【課題】1つにまとめれそう

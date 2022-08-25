@@ -1,4 +1,4 @@
-import React, { FC, Suspense, useEffect, useState } from "react";
+import React, { FC, memo, useEffect, useState } from "react";
 
 import { ApiWork } from "../../work/work.api-service";
 import {
@@ -13,7 +13,7 @@ type Props = {
   id: number | undefined;
 };
 
-const ModalWorkDetail: FC<Props> = (props) => {
+const ModalWorkDetail: FC<Props> = memo((props) => {
   let { id } = props;
   const [, setWork] = useState<Work>();
   const { stocks } = StockState.useStocks();
@@ -32,26 +32,40 @@ const ModalWorkDetail: FC<Props> = (props) => {
         }
       });
     }
-  }, [id, stocks]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <>
-      <div className="absolute inset-1/4 bg-white transition duration-200 ease-in-out">
-        <h1 className="font-bold text-lg pb-1">作業詳細</h1>
+      <div className="absolute top-10 left-1/4 sm:left-1/3 bg-white p-5 rounded-lg">
+        <h1 className="text-xl font-bold my-2">作業詳細</h1>
+        <hr className="my-2" />
         {workStock && (
           <>
-            <p>名前:{workStock.name}</p>
-            <p>type:{workStock.typename}</p>
+            <p className="py-2">
+              名前<span className="px-2">:</span>
+              {workStock.name}
+            </p>
+            <p className="py-2">
+              type<span className="px-2">:</span>
+              {workStock.typename}
+            </p>
             {/* 【課題】これも失敗 */}
-            <Suspense fallback={<div>loading中...</div>}>
-              <p>stcokタイプ:{NameAddOrDecOrNull(workStock.addOrDecOrNull)}</p>
-            </Suspense>
-            <p>stcok数:{workStock.num ? workStock.num : "-"}</p>
+            {/* <Suspense fallback={<div>loading中...</div>}> */}
+            <p className="py-2">
+              stcokタイプ<span className="px-2">:</span>
+              {NameAddOrDecOrNull(workStock.addOrDecOrNull)}
+            </p>
+            {/* </Suspense> */}
+            <p className="py-2">
+              stcok数<span className="px-2">:</span>
+              {workStock.num ? workStock.num : "-"}
+            </p>
           </>
         )}
       </div>
     </>
   );
-};
+});
 
 export default ModalWorkDetail;

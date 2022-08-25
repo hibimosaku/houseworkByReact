@@ -3,7 +3,7 @@ import { Reminder } from "../reminder/reminder-model";
 
 export const MONTHNUM = 6;
 //【課題】こまごまとした関数はどこに置くのがわかりやすい？
-export type AnalysisWork = {
+export type AnalysisMonthlyWork = {
   readonly workid: number;
   readonly workname: string;
   readonly typeid: number;
@@ -22,13 +22,12 @@ type AnalysisData = {
   reminderday?: number;
   worknum: number;
 };
-
 type sumMonthWorkCount = Array<number>;
 
-export function createAnalysisWork(
+export function createAnalysisMontlhlyWorks(
   records: Array<Record>,
   reminders: Array<Reminder>
-): Array<AnalysisWork> {
+): Array<AnalysisMonthlyWork> {
   const analysisData = getAnalysisData(records, reminders);
   const analysiWork = createAryWorks(analysisData);
 
@@ -47,7 +46,7 @@ export function createAnalysisWork(
 }
 
 export function createSumMonthWorkCount(
-  analysisWorks: Array<AnalysisWork>
+  analysisWorks: Array<AnalysisMonthlyWork>
 ): sumMonthWorkCount {
   //monthWorkCountを抽出
   const extractMonthWorkCount = analysisWorks.map((v) => {
@@ -67,8 +66,8 @@ export function createSumMonthWorkCount(
   return Array.from(m.values());
 }
 
-//当月の作業多い順
-function sortAnalysisWork(analysisWorks: Array<AnalysisWork>) {
+//当月の作業多い順に並び替え
+function sortAnalysisWork(analysisWorks: Array<AnalysisMonthlyWork>) {
   const result = analysisWorks.sort((a, b) => {
     return b.monthWorkCount[MONTHNUM - 1] - a.monthWorkCount[MONTHNUM - 1];
   });

@@ -1,4 +1,4 @@
 export type WorkType = {
-  readonly id: number | null;
+  readonly id: number;
   readonly name: string;
 };

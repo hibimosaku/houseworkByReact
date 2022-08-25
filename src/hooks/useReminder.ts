@@ -58,6 +58,9 @@ export const useReminder = () => {
       );
     });
   }, [records]);
+  console.log("reminder");
+
+  //【課題】recordコンポーネントで、作業実施したら、recordsが変わるのに、consoleされないのは？
 
   return {
     delayReminders,

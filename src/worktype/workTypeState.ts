@@ -1,14 +1,6 @@
 import { useCallback } from "react";
-import {
-  atom,
-  selector,
-  useRecoilCallback,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
-import { ApiWork } from "../work/work.api-service";
+import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 import { ApiWorkType } from "./workType.api-service";
-import { Work } from "../work/work-model";
 import { WorkType } from "./workType-model";
 import { RecoilAtomKeys } from "../store/RecoilKeys";
 

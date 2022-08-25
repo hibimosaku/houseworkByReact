@@ -1,5 +1,8 @@
-import { FC } from "react";
+import { FC, Suspense } from "react";
+import { Transition } from "react-transition-group";
+import { useModal } from "../../hooks/useModal";
 import { ReminderRecord } from "../../reminder/reminderRecord-model";
+import ModalWorkDetail from "./ModalWorkDetail";
 
 type Props = {
   reminders: Array<ReminderRecord>;
@@ -7,6 +10,14 @@ type Props = {
 
 export const ReminderTable: FC<Props> = (props) => {
   const { reminders } = props;
+  // const { isWork, isModalWork, onClickWorkOpenClose } = useModal();
+  const {
+    isWork,
+    isModalWork,
+    onClickWorkOpenClose,
+    modalPropState,
+    transitionStyles,
+  } = useModal();
 
   return (
     <>
@@ -33,9 +44,10 @@ export const ReminderTable: FC<Props> = (props) => {
               <td
                 className={
                   index % 2 === 0
-                    ? "bg-green-100 text-green-900 p-1"
-                    : "bg-green-200 text-green-900 p-1"
+                    ? "bg-green-100 text-green-900 p-1 cursor-pointer underline"
+                    : "bg-green-200 text-green-900 p-1 cursor-pointer underline"
                 }
+                onClick={() => onClickWorkOpenClose(reminder.workId)}
               >
                 {reminder.workName}
               </td>
@@ -52,6 +64,15 @@ export const ReminderTable: FC<Props> = (props) => {
           </tbody>
         ))}
       </table>
+      <Transition in={modalPropState as boolean} timeout={1500}>
+        {(state) => (
+          <div style={transitionStyles[state]}>
+            <Suspense fallback={<p>Loading...</p>}>
+              {isModalWork && <ModalWorkDetail id={isWork} />}
+            </Suspense>
+          </div>
+        )}
+      </Transition>
     </>
   );
 };
