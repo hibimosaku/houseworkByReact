@@ -1,8 +1,4 @@
-import { useRecoilState } from "recoil";
-import { useModal } from "../../../hooks/useModal";
 import { useReminder } from "../../../hooks/useReminder";
-import { modalWorkState } from "../../../store/modalState";
-import ModalWorkDetailTest from "../../organisms/ModalWorkDetailTest";
 import { ReminderTable } from "../../organisms/ReminderTable";
 
 export const Reminders = () => {
@@ -12,17 +8,6 @@ export const Reminders = () => {
     tendayReminders,
     thirtydayReminders,
   } = useReminder();
-
-  const {
-    isWork,
-    isModalWork,
-    setIsModalWork,
-    onClickWorkOpenClose,
-    modalPropState,
-    transitionStyles,
-  } = useModal();
-  const [isModalWorkState, setIsModalWorkState] =
-    useRecoilState(modalWorkState);
 
   return (
     <>
@@ -34,22 +19,14 @@ export const Reminders = () => {
         {delayReminders.length === 0 ? (
           "なし"
         ) : (
-          <ReminderTable
-            reminders={delayReminders}
-            isWork={isWork}
-            onClickWorkOpenClose={onClickWorkOpenClose}
-          />
+          <ReminderTable reminders={delayReminders} />
         )}
         <hr />
         <h3 className="text-md my-1 underline decoration-dash">当日</h3>
         {todayReminders.length === 0 ? (
           "なし"
         ) : (
-          <ReminderTable
-            reminders={todayReminders}
-            isWork={isWork}
-            onClickWorkOpenClose={onClickWorkOpenClose}
-          />
+          <ReminderTable reminders={todayReminders} />
         )}
         <hr />
 
@@ -57,11 +34,7 @@ export const Reminders = () => {
         {tendayReminders.length === 0 ? (
           "なし"
         ) : (
-          <ReminderTable
-            reminders={tendayReminders}
-            isWork={isWork}
-            onClickWorkOpenClose={onClickWorkOpenClose}
-          />
+          <ReminderTable reminders={tendayReminders} />
         )}
         <hr />
 
@@ -69,21 +42,12 @@ export const Reminders = () => {
         {thirtydayReminders.length === 0 ? (
           "なし"
         ) : (
-          <ReminderTable
-            reminders={thirtydayReminders}
-            isWork={isWork}
-            onClickWorkOpenClose={onClickWorkOpenClose}
-          />
+          <ReminderTable reminders={thirtydayReminders} />
         )}
         <hr />
 
         <h3 className="text-md my-1 underline decoration-dash">リセット中</h3>
       </div>
-      <ModalWorkDetailTest
-        isWork={isWork}
-        isModalWork={isModalWork}
-        setIsModalWork={setIsModalWork}
-      />
     </>
   );
 };

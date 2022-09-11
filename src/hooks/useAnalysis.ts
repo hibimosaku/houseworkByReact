@@ -20,13 +20,12 @@ import { recordState } from "../model/record/recordState";
 import { getAllReminder } from "../model/reminder/reminder.api-service";
 import { WorkType } from "../model/worktype/workType-model";
 import { WorkTypeState } from "../model/worktype/workTypeState";
-import { useModal } from "./useModal";
 
 export const useAnalysis = () => {
   // ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   // 共通用
   // ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-  const { onClickWorkOpenClose } = useModal();
+  // const { onClickWorkOpenClose } = useModal();
   const [recodsInfo] = useRecoilState<Array<Record>>(recordState);
   useEffect(() => {
     getAllReminder().then((res) => {
@@ -160,7 +159,7 @@ export const useAnalysis = () => {
   };
 
   return {
-    onClickWorkOpenClose,
+    // onClickWorkOpenClose,
     selectYearMonth,
     currentYearMonth,
     countYear,

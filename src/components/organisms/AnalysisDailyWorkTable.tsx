@@ -1,5 +1,4 @@
 import { Dispatch, FC, memo, SetStateAction, Suspense } from "react";
-import { Transition } from "react-transition-group";
 import { useModal } from "../../hooks/useModal";
 import { AnalysisDailyWork } from "../../model/analysis/analysisDailyyWork-model";
 import { WorkType } from "../../model/worktype/workType-model";
@@ -28,14 +27,14 @@ export const AnalysisDailyWorkTable: FC<Props> = memo((props) => {
     onChangeDailyWorkType,
     filWorktypes,
   } = props;
+  const { idWork, setIdWork, isShowModal, setIsShowModal } = useModal();
 
-  const {
-    isWork,
-    isModalWork,
-    onClickWorkOpenClose,
-    modalPropState,
-    transitionStyles,
-  } = useModal();
+  const showWorkDetail = (id: AnalysisDailyWork["work"]["id"]) => {
+    console.log(id);
+    setIdWork(Number(id));
+    setIsShowModal(true);
+  };
+
   return (
     <>
       <label className="my-1 text-sm sm:text-base">年月：</label>
@@ -112,13 +111,11 @@ export const AnalysisDailyWorkTable: FC<Props> = memo((props) => {
                     <th
                       className={
                         index % 2 === 0
-                          ? "bg-green-100 text-green-900 p-1 font-normal underline cursor-pointer sticky left-0 sm:left-39 z-10"
-                          : "bg-green-200 text-green-900 p-1 font-normal underline cursor-pointer sticky left-0 sm:left-39 z-10"
+                          ? "bg-green-100 text-green-900 p-1 font-normal underline cursor-pointer sticky left-0 sm:left-39"
+                          : "bg-green-200 text-green-900 p-1 font-normal underline cursor-pointer sticky left-0 sm:left-39"
                       }
                       key={"work-" + index}
-                      // onClick={() =>
-                      //   onClickWorkOpenClose(v["workid"], isModalWork)
-                      // }
+                      onClick={() => showWorkDetail(v["work"]["id"])}
                     >
                       {v["work"]["name"]}
                     </th>
@@ -155,17 +152,11 @@ export const AnalysisDailyWorkTable: FC<Props> = memo((props) => {
           </table>
         </div>
       </>
-      <Transition in={modalPropState} timeout={1500}>
-        {(state) => (
-          <div style={transitionStyles[state]}>
-            <Suspense fallback={<p>Loading...</p>}>
-              {isModalWork && (
-                <ModalWorkDetail id={isWork} isModalWork={isModalWork} />
-              )}
-            </Suspense>
-          </div>
-        )}
-      </Transition>
+      <ModalWorkDetail
+        idWork={idWork}
+        isShowModal={isShowModal}
+        setIsShowModal={setIsShowModal}
+      />
     </>
   );
 });

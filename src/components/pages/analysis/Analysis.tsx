@@ -9,7 +9,7 @@ export const Analysis = () => {
   // console.log("【課題】再レンダリングが多い14回");
 
   const {
-    onClickWorkOpenClose,
+    // onClickWorkOpenClose,
     selectYearMonth,
     currentYearMonth,
     countYear,
@@ -42,7 +42,7 @@ export const Analysis = () => {
           analysisMonthlyWorks={analysisMonthlyWorks}
           countYear={countYear}
           YEAR={YEAR}
-          onClickWorkOpenClose={onClickWorkOpenClose}
+          // onClickWorkOpenClose={onClickWorkOpenClose}
           sumMonthWorkCount={sumMonthWorkCount}
           filMonthlyAnalysis={filMonthlyAnalysis}
           setFilMonthlyAnalysis={setFilMonthlyAnalysis}

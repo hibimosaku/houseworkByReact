@@ -1,39 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { FC, Suspense, useEffect, useState } from "react";
-import { Transition } from "react-transition-group";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { FC, useState } from "react";
 import { useModal } from "../../hooks/useModal";
 import { ReminderRecord } from "../../model/reminder/reminderRecord-model";
-import { ModalState, modalWorkReminderState } from "../../store/modalState";
 import ModalWorkDetail from "./ModalWorkDetail";
-import ModalWorkDetailTest from "./ModalWorkDetailTest";
 
 type Props = {
   reminders: Array<ReminderRecord>;
-  isWork: any;
-  onClickWorkOpenClose: any;
 };
 export const ReminderTable: FC<Props> = (props) => {
-  const { reminders, isWork, onClickWorkOpenClose } = props;
-  const [isModalReminder, setIsModalReminder] = useRecoilState<any>(
-    modalWorkReminderState
-  );
-  // const { isModalReminder } = ModalState.useIsReminderModal(modalWorkReminderState);
-
-  // useEffect(() => {
-  //   setIsModalReminder(!isModalReminder);
-  // }, [isModalReminder]);
-
-  const {
-    // isWork,
-    setIsModalWork,
-    isModalWork,
-    // onClickWorkOpenClose,
-    modalPropState,
-    transitionStyles,
-  } = useModal();
+  const { reminders } = props;
+  const { setIdWork, isShowModal, setIsShowModal, idWork } = useModal();
 
   const [inProp, setInProp] = useState(false);
+  const showWorkDetail = (id: number) => {
+    setIdWork(id);
+    setIsShowModal(true);
+  };
 
   return (
     <>
@@ -64,7 +46,7 @@ export const ReminderTable: FC<Props> = (props) => {
                     : "bg-green-200 text-green-900 p-1 cursor-pointer underline"
                 }
                 onClick={() => {
-                  onClickWorkOpenClose(reminder.workId);
+                  showWorkDetail(reminder.workId);
                   setInProp(!inProp);
                 }}
               >
@@ -96,6 +78,11 @@ export const ReminderTable: FC<Props> = (props) => {
         isModalWork={isModalWork}
         setIsModalWork={setIsModalWork}
       /> */}
+      <ModalWorkDetail
+        idWork={idWork}
+        isShowModal={isShowModal}
+        setIsShowModal={setIsShowModal}
+      />
     </>
   );
 };

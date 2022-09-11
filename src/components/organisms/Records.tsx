@@ -1,6 +1,6 @@
 import { useModal } from "../../hooks/useModal";
 import { useRecord } from "../../hooks/useRecord";
-import ModalWorkDetailTest1 from "./ModalWorkDetailTest1";
+import ModalWorkDetail from "./ModalWorkDetail";
 
 export const Records = () => {
   // const WorkDetail = React.lazy(() => import("./ModalWorkDetail"));
@@ -158,7 +158,7 @@ export const Records = () => {
             ))}
           </table>
         </div>
-        <ModalWorkDetailTest1
+        <ModalWorkDetail
           idWork={idWork}
           isShowModal={isShowModal}
           setIsShowModal={setIsShowModal}

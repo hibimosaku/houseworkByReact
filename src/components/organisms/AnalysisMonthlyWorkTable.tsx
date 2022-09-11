@@ -1,7 +1,6 @@
-import { FC, memo, Suspense } from "react";
+import { FC, memo } from "react";
 import { AnalysisMonthlyWork } from "../../model/analysis/analysiyMonthlyWork-model";
 import { AnalysisWorkYearMonth } from "../../model/analysis/analysisWorkYearMonth-model";
-import { Transition } from "react-transition-group";
 import { useModal } from "../../hooks/useModal";
 import ModalWorkDetail from "./ModalWorkDetail";
 import { WorkTypeState } from "../../model/worktype/workTypeState";
@@ -14,12 +13,20 @@ type Props = {
   setFilMonthlyAnalysis: any;
   countYear: any;
   YEAR: any;
-  onClickWorkOpenClose: any;
+  // onClickWorkOpenClose: any;
   sumMonthWorkCount: any;
   currentWorkType: any;
 };
 
 export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
+  const { idWork, setIdWork, isShowModal, setIsShowModal } = useModal();
+
+  const showWorkDetail = (id: AnalysisMonthlyWork["work"]["id"]) => {
+    console.log(id);
+    setIdWork(Number(id));
+    setIsShowModal(true);
+  };
+
   const {
     analysisWorkYearMonth,
     analysisMonthlyWorks,
@@ -31,13 +38,13 @@ export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
     currentWorkType,
   } = props;
 
-  const {
-    isWork,
-    isModalWork,
-    onClickWorkOpenClose,
-    modalPropState,
-    transitionStyles,
-  } = useModal();
+  // const {
+  //   isWork,
+  //   isModalWork,
+  //   onClickWorkOpenClose,
+  //   modalPropState,
+  //   transitionStyles,
+  // } = useModal();
 
   const onChangeMonthlyWorkType = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -176,9 +183,10 @@ export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
                         : "bg-green-200 text-green-900 p-1 font-normal underline cursor-pointer"
                     }
                     key={"workid" + index}
-                    // onClick={() =>
-                    //   onClickWorkOpenClose(v["workid"], isModalWork)
-                    // }
+                    onClick={
+                      () => showWorkDetail(v["work"]["id"])
+                      //   onClickWorkOpenClose(v["workid"], isModalWork)
+                    }
                   >
                     {v["work"]["name"]}
                   </th>
@@ -211,17 +219,11 @@ export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
           </tbody>
         </table>
       </div>
-      <Transition in={modalPropState} timeout={1500}>
-        {(state) => (
-          <div style={transitionStyles[state]} className="z-10">
-            <Suspense fallback={<p>Loading...</p>}>
-              {isModalWork && (
-                <ModalWorkDetail id={isWork} isModalWork={isModalWork} />
-              )}
-            </Suspense>
-          </div>
-        )}
-      </Transition>
+      <ModalWorkDetail
+        idWork={idWork}
+        isShowModal={isShowModal}
+        setIsShowModal={setIsShowModal}
+      />
     </>
   );
 });
