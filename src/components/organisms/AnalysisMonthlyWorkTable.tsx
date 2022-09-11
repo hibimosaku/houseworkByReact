@@ -1,11 +1,11 @@
 import { FC, memo, Suspense } from "react";
-import { AnalysisMonthlyWork } from "../../analysis/analysiyMonthlyWork-model";
-import { AnalysisWorkYearMonth } from "../../analysis/analysisWorkYearMonth-model";
+import { AnalysisMonthlyWork } from "../../model/analysis/analysiyMonthlyWork-model";
+import { AnalysisWorkYearMonth } from "../../model/analysis/analysisWorkYearMonth-model";
 import { Transition } from "react-transition-group";
 import { useModal } from "../../hooks/useModal";
 import ModalWorkDetail from "./ModalWorkDetail";
-import { WorkTypeState } from "../../worktype/workTypeState";
-import { WorkType } from "../../worktype/workType-model";
+import { WorkTypeState } from "../../model/worktype/workTypeState";
+import { WorkType } from "../../model/worktype/workType-model";
 
 type Props = {
   analysisWorkYearMonth: AnalysisWorkYearMonth;
@@ -47,7 +47,7 @@ export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
       setFilMonthlyAnalysis(analysisMonthlyWorks);
     } else {
       const result = analysisMonthlyWorks.filter((v) => {
-        return eventId === v.typeid;
+        return eventId === v["work"]["type"];
       });
       setFilMonthlyAnalysis(result);
     }
@@ -166,7 +166,7 @@ export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
                     }
                     key={"typeid-" + index}
                   >
-                    {v["typename"]}
+                    {v["work"]["typename"]}
                   </th>
                   {/* 作業名 */}
                   <th
@@ -176,9 +176,11 @@ export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
                         : "bg-green-200 text-green-900 p-1 font-normal underline cursor-pointer"
                     }
                     key={"workid" + index}
-                    onClick={() => onClickWorkOpenClose(v["workid"])}
+                    // onClick={() =>
+                    //   onClickWorkOpenClose(v["workid"], isModalWork)
+                    // }
                   >
-                    {v["workname"]}
+                    {v["work"]["name"]}
                   </th>
                   {/* 作業月数 */}
                   {v["monthWorkCount"].map((x: number, index: number) => (
@@ -209,11 +211,13 @@ export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
           </tbody>
         </table>
       </div>
-      <Transition in={modalPropState as boolean} timeout={1500}>
+      <Transition in={modalPropState} timeout={1500}>
         {(state) => (
-          <div style={transitionStyles[state]}>
+          <div style={transitionStyles[state]} className="z-10">
             <Suspense fallback={<p>Loading...</p>}>
-              {isModalWork && <ModalWorkDetail id={isWork} />}
+              {isModalWork && (
+                <ModalWorkDetail id={isWork} isModalWork={isModalWork} />
+              )}
             </Suspense>
           </div>
         )}

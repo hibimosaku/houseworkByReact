@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { RecordState } from "../../../record/recordState";
-import { Record } from "../../../record/record-model";
-import { Stock } from "../../../stock/stock-model";
+import { RecordState } from "../../../model/record/recordState";
+import { Record } from "../../../model/record/record-model";
+import { Stock } from "../../../model/stock/stock-model";
 import useSWR, { Fetcher } from "swr";
 import { URL } from "../../../api/url";
 import { StockDetailTable } from "../../organisms/StockDetailTable";

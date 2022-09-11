@@ -8,7 +8,7 @@ import {
 } from "recoil";
 import { ApiStock } from "./stock.api-service";
 import { Stock } from "./stock-model";
-import { RecoilAtomKeys } from "../store/RecoilKeys";
+import { RecoilAtomKeys } from "../../store/RecoilKeys";
 
 const stockState = atom<Array<Stock>>({
   key: RecoilAtomKeys.STOCK_STATE,

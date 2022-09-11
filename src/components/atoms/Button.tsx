@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 type Props = {
   children: string;
-  onClick: any; //【未着手】関数定義
+  onClick: () => void;
 };
 
 const Button: FC<Props> = (props) => {

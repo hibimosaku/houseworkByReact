@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { getAllReminder } from "../reminder/reminder.api-service";
+import { getAllReminder } from "../model/reminder/reminder.api-service";
 import {
   ReminderRecord,
   ReminderRecordModel,
-} from "../reminder/reminderRecord-model";
-import { RecordState } from "../record/recordState";
+} from "../model/reminder/reminderRecord-model";
+import { RecordState } from "../model/record/recordState";
 
 export const useReminder = () => {
   const [delayReminders, setDelayReminders] = useState<Array<ReminderRecord>>(
@@ -58,9 +58,6 @@ export const useReminder = () => {
       );
     });
   }, [records]);
-  console.log("reminder");
-
-  //【課題】recordコンポーネントで、作業実施したら、recordsが変わるのに、consoleされないのは？
 
   return {
     delayReminders,

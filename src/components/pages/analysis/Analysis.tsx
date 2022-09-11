@@ -1,7 +1,8 @@
-import { YEAR } from "../../../analysis/analysisWorkYearMonth-model";
+import { YEAR } from "../../../model/analysis/analysisWorkYearMonth-model";
 import { AnalysisMonthlyWorkTable } from "../../organisms/AnalysisMonthlyWorkTable";
 import { AnalysisDailyWorkTable } from "../../organisms/AnalysisDailyWorkTable";
 import { useAnalysis } from "../../../hooks/useAnalysis";
+import { AnalysisGraph } from "../../organisms/AnalysisGraph";
 
 export const Analysis = () => {
   //【課題】再レンダリングが多い。初期時14回。ただ、ページ移動時は4回
@@ -29,10 +30,12 @@ export const Analysis = () => {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative z-20">
         <h1 className="font-bold text-md my-5 underline decoration-wavy">
           分析
         </h1>
+        {/* <h3 className="text-md my-1 underline decoration-dash">グラフ</h3>
+        <AnalysisGraph /> */}
         <h3 className="text-md my-1 underline decoration-dash">月別作業</h3>
         <AnalysisMonthlyWorkTable
           analysisWorkYearMonth={analysisWorkYearMonth}
@@ -59,15 +62,6 @@ export const Analysis = () => {
           filWorktypes={filWorktypes}
         />
       </div>
-      {/* <Transition in={modalPropState as boolean} timeout={1500}>
-        {(state) => (
-          <div style={transitionStyles[state]}>
-            <Suspense fallback={<p>Loading...</p>}>
-              {isModalWork && <ModalWorkDetail id={isWork} />}
-            </Suspense>
-          </div>
-        )}
-      </Transition> */}
     </>
   );
 };

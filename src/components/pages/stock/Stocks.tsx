@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useSWR, { Fetcher } from "swr";
 import { URL } from "../../../api/url";
-import { Stock } from "../../../stock/stock-model";
-import { asyncStockState } from "../../../stock/stockState";
+import { Stock } from "../../../model/stock/stock-model";
+import { asyncStockState } from "../../../model/stock/stockState";
 
 function TestChild() {
   const [test] = useRecoilState<Array<Stock>>(asyncStockState);
@@ -47,7 +47,7 @@ const Stocks = () => {
           <tbody key={stock.id}>
             <tr>
               <td className="bg-green-100 text-green-900 p-1">{index + 1}</td>
-              <td className="bg-green-100 text-green-900 p-1 text-red-500 underline">
+              <td className="bg-green-100 text-green-900 p-1 underline">
                 <Link to={`/stock/${stock.id}`} state={{ data: stock }}>
                   {stock.name}
                 </Link>

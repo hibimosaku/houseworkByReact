@@ -1,7 +1,7 @@
-import { URL } from "../api/url";
+import { URL } from "../../api/url";
 import { Stock, StockModel } from "./stock-model";
 
-// const sleep = (waitSeconds: any) => {
+// const sleep = (waitSeconds: number) => {
 //   return new Promise((resolve) => {
 //     setTimeout(() => {
 //       resolve("成功");

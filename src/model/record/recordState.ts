@@ -7,7 +7,7 @@ import {
 } from "recoil";
 import { ApiRecord } from "./record.api-service";
 import { Record } from "./record-model";
-import { RecoilAtomKeys } from "../store/RecoilKeys";
+import { RecoilAtomKeys } from "../../store/RecoilKeys";
 export const recordState = atom<Array<Record>>({
   key: RecoilAtomKeys.RECORD_STATE,
   default: [],

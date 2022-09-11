@@ -1,17 +1,10 @@
-import React, { Suspense } from "react";
 import { useModal } from "../../hooks/useModal";
 import { useRecord } from "../../hooks/useRecord";
-import { Transition } from "react-transition-group";
+import ModalWorkDetailTest1 from "./ModalWorkDetailTest1";
 
 export const Records = () => {
-  const WorkDetail = React.lazy(() => import("./ModalWorkDetail"));
-  const {
-    isWork,
-    isModalWork,
-    onClickWorkOpenClose,
-    modalPropState,
-    transitionStyles,
-  } = useModal();
+  // const WorkDetail = React.lazy(() => import("./ModalWorkDetail"));
+  const { idWork, setIdWork, isShowModal, setIsShowModal } = useModal();
   const {
     filTypes,
     filWorks,
@@ -19,13 +12,25 @@ export const Records = () => {
     onClickDeleteRecord,
     onChangeFiltype,
     onChangeWorktype,
+    filType,
+    filWork,
   } = useRecord();
+
+  const showWorkDetail = (id: number) => {
+    setIdWork(id);
+    setIsShowModal(true);
+  };
   return (
     <>
-      <div className="relative">
+      <div className="relative z-1">
+        {}
         <h3 className="text-md my-1 underline decoration-dash">作業一覧</h3>
         <label className="text-sm sm:text-base">種類別：</label>
-        <select onChange={onChangeFiltype} className="text-sm sm:text-base">
+        <select
+          onChange={onChangeFiltype}
+          className="text-sm sm:text-base"
+          value={filType}
+        >
           <option value="all" defaultValue={"all"}>
             ALL
           </option>
@@ -40,6 +45,7 @@ export const Records = () => {
           id="work"
           onChange={onChangeWorktype}
           className="text-sm sm:text-base"
+          value={filWork}
         >
           <option value="all">ALL</option>
           {filWorks.map((work) => (
@@ -101,7 +107,8 @@ export const Records = () => {
                         ? "bg-green-100 text-green-900 p-1 cursor-pointer underline"
                         : "bg-green-200 text-green-900 p-1 cursor-pointer underline"
                     }
-                    onClick={() => onClickWorkOpenClose(record.work)}
+                    // onClick={() => onClickWorkOpenClose(record.work)}
+                    onClick={() => showWorkDetail(record.work)}
                   >
                     {record.workname}
                   </td>
@@ -151,16 +158,11 @@ export const Records = () => {
             ))}
           </table>
         </div>
-        {/* 【課題】animation方法。本当は、WorkDetailにいれたかった */}
-        <Transition in={modalPropState as boolean} timeout={1500}>
-          {(state) => (
-            <div style={transitionStyles[state]}>
-              <Suspense fallback={<p>Loading...</p>}>
-                {isModalWork && <WorkDetail id={isWork} />}
-              </Suspense>
-            </div>
-          )}
-        </Transition>
+        <ModalWorkDetailTest1
+          idWork={idWork}
+          isShowModal={isShowModal}
+          setIsShowModal={setIsShowModal}
+        />
       </div>
     </>
   );

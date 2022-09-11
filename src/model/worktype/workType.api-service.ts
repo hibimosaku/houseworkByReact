@@ -1,4 +1,4 @@
-import { URL } from "../api/url";
+import { URL } from "../../api/url";
 import { WorkType } from "./workType-model";
 
 async function getAllWorkTypesData(): Promise<Array<WorkType>> {

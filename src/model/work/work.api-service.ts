@@ -1,5 +1,5 @@
 import { Work } from "./work-model";
-import { URL } from "../api/url";
+import { URL } from "../../api/url";
 
 async function getAllWorksData(): Promise<Array<Work>> {
   const result =

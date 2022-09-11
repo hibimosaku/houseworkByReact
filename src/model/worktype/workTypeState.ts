@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 import { ApiWorkType } from "./workType.api-service";
 import { WorkType } from "./workType-model";
-import { RecoilAtomKeys } from "../store/RecoilKeys";
+import { RecoilAtomKeys } from "../../store/RecoilKeys";
 
 const workTypeState = atom<Array<WorkType>>({
   key: RecoilAtomKeys.WORKTYPE_STATE,

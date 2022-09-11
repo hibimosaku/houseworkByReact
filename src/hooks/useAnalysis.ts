@@ -3,23 +3,23 @@ import { useRecoilState } from "recoil";
 import {
   AnalysisDailyWork,
   createAnalysisDailyWork,
-} from "../analysis/analysisDailyyWork-model";
-import { createAryDay } from "../analysis/analysisWorkMonthDay-model";
+} from "../model/analysis/analysisDailyyWork-model";
+import { createAryDay } from "../model/analysis/analysisWorkMonthDay-model";
 import {
   AnalysisWorkYearMonth,
   calcCountYear,
   createAnalysisWorkYearMonth,
-} from "../analysis/analysisWorkYearMonth-model";
+} from "../model/analysis/analysisWorkYearMonth-model";
 import {
   AnalysisMonthlyWork,
   createAnalysisMontlhlyWorks,
   createSumMonthWorkCount,
-} from "../analysis/analysiyMonthlyWork-model";
-import { Record } from "../record/record-model";
-import { recordState } from "../record/recordState";
-import { getAllReminder } from "../reminder/reminder.api-service";
-import { WorkType } from "../worktype/workType-model";
-import { WorkTypeState } from "../worktype/workTypeState";
+} from "../model/analysis/analysiyMonthlyWork-model";
+import { Record } from "../model/record/record-model";
+import { recordState } from "../model/record/recordState";
+import { getAllReminder } from "../model/reminder/reminder.api-service";
+import { WorkType } from "../model/worktype/workType-model";
+import { WorkTypeState } from "../model/worktype/workTypeState";
 import { useModal } from "./useModal";
 
 export const useAnalysis = () => {
@@ -71,7 +71,7 @@ export const useAnalysis = () => {
       s.add(y + "/" + m);
     });
   });
-  const selectYearMonth = Array.from(s.values());
+  const selectYearMonth = Array.from(s.values()) as Array<string>;
   const countYear = calcCountYear(
     analysisWorkYearMonth["year"],
     new Date().getFullYear()
@@ -85,7 +85,7 @@ export const useAnalysis = () => {
     analysisWorkYearMonth.month.slice(-1)[0]
   );
   //現在の対象の年月、画面用
-  const [currentYearMonth, setCurrentYearMonth] = useState(
+  const [currentYearMonth, setCurrentYearMonth] = useState<string>(
     targetDailyyear + "/" + dailymonth
   );
 
@@ -114,7 +114,7 @@ export const useAnalysis = () => {
     const m = new Map();
     analysisDailyWorks.forEach((r) => {
       worktypes.forEach((w) => {
-        if (r.typeid === w.id) {
+        if (r.work?.type === w.id) {
           m.set(w.id, w);
         }
       });
@@ -127,7 +127,7 @@ export const useAnalysis = () => {
     analysisDailyWorks: Array<AnalysisDailyWork>
   ): Array<AnalysisDailyWork> => {
     const result = analysisDailyWorks.filter((v) => {
-      return v.typeid === typeid;
+      return v.work.type === typeid;
     });
     return result;
   };
@@ -151,11 +151,11 @@ export const useAnalysis = () => {
   ) => {
     const eventId = Number(event.target.value);
     setCurrentWorkType(eventId);
+
     if (eventId === 0) {
       setFilDailyAnalysis(analysisDailyWorks);
     } else {
-      // findFilWorktypes(analysisDailyWorks);
-      setFilDailyAnalysis(findAnalysisDailyWorks(eventId, filDailyAnalysis));
+      setFilDailyAnalysis(findAnalysisDailyWorks(eventId, analysisDailyWorks));
     }
   };
 

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { ApiRecord } from "../record/record.api-service";
-import { ApiStock } from "../stock/stock.api-service";
-import { Record } from "../record/record-model";
-import { StockModel } from "../stock/stock-model";
-import { recordState, RecordState } from "../record/recordState";
-import { StockState } from "../stock/stockState";
+import { ApiRecord } from "../model/record/record.api-service";
+import { ApiStock } from "../model/stock/stock.api-service";
+import { Record } from "../model/record/record-model";
+import { StockModel } from "../model/stock/stock-model";
+import { recordState, RecordState } from "../model/record/recordState";
+import { StockState } from "../model/stock/stockState";
 
 export const useRecord = () => {
   const { updateRecord, deleteRecord } = RecordState.useChangeRecord();
@@ -23,7 +23,7 @@ export const useRecord = () => {
     Array<Pick<Record, "typeid" | "typename">>
   >([]);
   const [filType, setFilType] = useState<number | string>("all");
-  const [, setFilWork] = useState<number | string>("all");
+  const [filWork, setFilWork] = useState<number | string>("all");
   const [filWorks, setFilWorks] = useState<
     Array<Pick<Record, "work" | "workname" | "typeid">>
   >([]);
@@ -39,7 +39,7 @@ export const useRecord = () => {
       new Map(
         recodsInfo.map((record: Record) => [record.typeid, record])
       ).values()
-    ) as Array<Record>;
+    );
     const arraytype = resultType.map((v) => {
       return {
         typeid: v.typeid,
@@ -178,5 +178,7 @@ export const useRecord = () => {
     onClickDeleteRecord,
     onChangeFiltype,
     onChangeWorktype,
+    filType,
+    filWork,
   };
 };

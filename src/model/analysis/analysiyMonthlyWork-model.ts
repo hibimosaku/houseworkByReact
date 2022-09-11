@@ -1,13 +1,11 @@
 import { Record } from "../record/record-model";
 import { Reminder } from "../reminder/reminder-model";
+import { Work } from "../work/work-model";
 
 export const MONTHNUM = 6;
-//【課題】こまごまとした関数はどこに置くのがわかりやすい？
+
 export type AnalysisMonthlyWork = {
-  readonly workid: number;
-  readonly workname: string;
-  readonly typeid: number;
-  readonly typename: string;
+  readonly work: Work;
   readonly averageReminderday: number | null;
   readonly monthWorkCount: Array<number>;
 };
@@ -33,10 +31,12 @@ export function createAnalysisMontlhlyWorks(
 
   const result = Array.from(analysiWork.values()).map((v) => {
     return {
-      workid: v[0],
-      workname: v[1],
-      typeid: v[2],
-      typename: v[3],
+      work: {
+        id: v[0],
+        name: v[1],
+        type: v[2],
+        typename: v[3],
+      },
       averageReminderday: v[4],
       monthWorkCount: v[5],
     };
@@ -143,15 +143,17 @@ const analysisYearMonth: Array<AnalysisYearMonth> = Array(MONTHNUM)
   })
   .reverse();
 
+// 【課題】any
 export const aryAnalysisYearMonth = analysisYearMonth.reduce(
-  (result: any, current) => {
+  // (result: { year: [], month: [] } , current:AnalysisYearMonth) => {
+  (result: any, current: AnalysisYearMonth) => {
     result["year"].push(current.year);
     result["month"].push(current.month);
     return result;
   },
   { year: [], month: [] }
 );
-
+console.log(aryAnalysisYearMonth);
 //これなら、オブジェクトでできる
 // const test = new Map();
 // test.set("a", { id: 1, name: "fff", ary: [1, 2, 5] });

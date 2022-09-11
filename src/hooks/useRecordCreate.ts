@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
-import { ApiRecord } from "../record/record.api-service";
-import { ApiStock } from "../stock/stock.api-service";
-import { Stock, StockModel } from "../stock/stock-model";
-import { Work } from "../work/work-model";
-import { RecordState } from "../record/recordState";
-import { StockState } from "../stock/stockState";
-import { WorkState } from "../work/workState";
-import { WorkTypeState } from "../worktype/workTypeState";
+import { ApiRecord } from "../model/record/record.api-service";
+import { ApiStock } from "../model/stock/stock.api-service";
+import { Stock, StockModel } from "../model/stock/stock-model";
+import { Work } from "../model/work/work-model";
+import { RecordState } from "../model/record/recordState";
+import { StockState } from "../model/stock/stockState";
+import { WorkState } from "../model/work/workState";
+import { WorkTypeState } from "../model/worktype/workTypeState";
 
 export const useRecordCreate = () => {
   const { stocks } = StockState.useStocks();
   const { works } = WorkState.useWorks();
   const { worktypes } = WorkTypeState.useWorkTypes();
+
   const { addStock } = StockState.useAddStock();
   const { createRecord, updateRecord } = RecordState.useChangeRecord();
-
   const [stockNum, setStockNum] = useState<number>(1);
   const [stock, setStock] = useState<Stock | {}>({});
   const [workid, setWorkId] = useState<number | null>(0);
   const [workTypeid, setWorkTypeId] = useState<number | null>(0);
-  //【課題】1つにまとめれそう
   const [isAddwork, setIsAddwork] = useState(false);
   const [isDecreasework, setIsDecreasework] = useState(false);
   const [filWorks, setFilWorks] = useState<Array<Work>>(works);
-
   useEffect(() => {
     setFilWorks(works); //【課題】邪道？
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [works]);
   const onChangeWorkType = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setWorkId(0);
     if (!event) return;
@@ -78,9 +76,6 @@ export const useRecordCreate = () => {
     const targetWork = works.filter((v) => v.id === workid);
     if (!targetWork[0].id) return;
     createRecord(targetWork[0].id);
-    // ApiRecord.creatRecord(targetWork[0].id).then(() => {
-    //   ApiRecord.getAllRecordsData().then((res) => createRecord(res)); //課題 onClickCreateRecordAddStockではこの書き方では反映せず
-    // });
     setWorkId(0);
   };
   const onClickCreateRecordDecreaseStock = () => {

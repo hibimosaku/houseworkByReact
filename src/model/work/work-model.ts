@@ -37,6 +37,7 @@ export function findWorkStock(work: Work, stocks: Array<Stock>): WorkStock {
   }
 }
 
+//日本語に変換
 export function NameAddOrDecOrNull(type: WorkStock["addOrDecOrNull"]) {
   switch (type) {
     case "add":

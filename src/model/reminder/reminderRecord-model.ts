@@ -27,7 +27,7 @@ function createReminderRecord(
     new Map(recordsCopy.map((record: Record) => [record.work, record])).values()
   );
 
-  let reminderAry: any = [];
+  let reminderAry: Array<ReminderRecord> = [];
   let today = new Date();
   resultType.forEach((v) => {
     reminders.forEach((y: Reminder) => {

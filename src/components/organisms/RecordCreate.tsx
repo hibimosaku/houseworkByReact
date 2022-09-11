@@ -1,5 +1,6 @@
 import { useRecordCreate } from "../../hooks/useRecordCreate";
-import { WorkType } from "../../worktype/workType-model";
+import { Stock } from "../../model/stock/stock-model";
+import { WorkType } from "../../model/worktype/workType-model";
 import Button from "../atoms/Button";
 
 export default function RecordCreate() {
@@ -81,7 +82,7 @@ export default function RecordCreate() {
       {/* 【課題】stock.numを解消できず */}
       {workid !== 0 && isDecreasework && (
         <>
-          {/* {stock.num  > 0 ? (
+          {checkEmpty(stock) ? (
             <>
               <p>現在在庫数：{stock.num}</p>
               <Button
@@ -91,7 +92,7 @@ export default function RecordCreate() {
             </>
           ) : (
             <p>在庫なしのため登録不可</p>
-          )} */}
+          )}
         </>
       )}
       {workid !== 0 && !isAddwork && !isDecreasework && (
@@ -99,4 +100,13 @@ export default function RecordCreate() {
       )}
     </>
   );
+}
+
+//型述語。【勉強】typescript && && は無理。順番が無理
+function checkEmpty(stock: any): stock is Stock {
+  if (stock.num && stock.num > 0) {
+    return true;
+  } else {
+    return false;
+  }
 }

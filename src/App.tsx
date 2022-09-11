@@ -5,8 +5,7 @@ import { Router } from "./router/Router";
 import { RecoilRoot } from "recoil";
 
 function App() {
-  // const [isModal, setIsModal] = useRecoilState(modalState);
-
+  //routerとrecoil設定
   return (
     <React.StrictMode>
       <RecoilRoot>
