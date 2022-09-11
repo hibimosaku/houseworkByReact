@@ -22,7 +22,6 @@ export const AnalysisMonthlyWorkTable: FC<Props> = memo((props) => {
   const { idWork, setIdWork, isShowModal, setIsShowModal } = useModal();
 
   const showWorkDetail = (id: AnalysisMonthlyWork["work"]["id"]) => {
-    console.log(id);
     setIdWork(Number(id));
     setIsShowModal(true);
   };

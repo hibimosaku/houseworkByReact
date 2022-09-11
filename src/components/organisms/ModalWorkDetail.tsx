@@ -15,7 +15,7 @@ import {
   WorkStock,
 } from "../../model/work/work-model";
 import { StockState } from "../../model/stock/stockState";
-import "../pages/styles.css";
+import "../../../src/styles.css";
 import { CSSTransition } from "react-transition-group";
 
 type Props = {

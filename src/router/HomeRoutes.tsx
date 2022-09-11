@@ -1,4 +1,3 @@
-import { NewRecord } from "../components/pages/NewRecord";
 import RecordCreate from "../components/organisms/RecordCreate";
 import { Analysis } from "../components/pages/analysis/Analysis";
 import { Page404 } from "../components/pages/Page404";
@@ -40,9 +39,5 @@ export const homeRoutes: Array<HomeRoutes> = [
   {
     path: "*",
     children: <Page404 />,
-  },
-  {
-    path: "/test",
-    children: <NewRecord />,
   },
 ];

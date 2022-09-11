@@ -2,11 +2,8 @@ import { YEAR } from "../../../model/analysis/analysisWorkYearMonth-model";
 import { AnalysisMonthlyWorkTable } from "../../organisms/AnalysisMonthlyWorkTable";
 import { AnalysisDailyWorkTable } from "../../organisms/AnalysisDailyWorkTable";
 import { useAnalysis } from "../../../hooks/useAnalysis";
-import { AnalysisGraph } from "../../organisms/AnalysisGraph";
-
 export const Analysis = () => {
   //【課題】再レンダリングが多い。初期時14回。ただ、ページ移動時は4回
-  // console.log("【課題】再レンダリングが多い14回");
 
   const {
     // onClickWorkOpenClose,
